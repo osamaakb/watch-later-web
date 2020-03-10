@@ -21,7 +21,7 @@
 <body>
 
     <!-- Nav Bar -->
-    <nav class="navbar navbar-light white justify-content-between z-depth-0">
+    <nav class="navbar navbar-light white justify-content-between z-depth-0 m-2">
         <a class="navbar-brand" href="#"><strong>Watch Later</strong></a>
         <form class="form-inline my-1">
             <div class="md-form form-sm my-0">
@@ -34,7 +34,14 @@
     </nav>
     <!-- Nav Bar -->
 
-    <p>movies</p>
+
+    <div class="m-4 w-auto">
+        <div id="movieList" class="row">
+        </div>
+        <!--First row-->
+
+    </div>
+
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -47,6 +54,11 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/js/mdb.min.js"></script>
+
+
+    <script src="./models/movie.js"></script>
+    <script src="index.js"></script>
+
 
 </body>
 

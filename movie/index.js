@@ -70,6 +70,7 @@ function run() {
             SingleMovieView.renderCast(cast)
         })
 
+
 }
 
 document.addEventListener("DOMContentLoaded", run);

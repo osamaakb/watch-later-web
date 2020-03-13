@@ -22,8 +22,8 @@ class SingleMovieView {
 
         movie.genres.forEach(genre => {
             genresList.insertAdjacentHTML('beforeend', `
-                <li class="mr-2 mt-2 mb-2">
-                    <span class=" border border-white round-border p-2 text-white">${genre.name}</span>
+                <li class="mr-2 mt-2 mb-2 list-unstyled genres-item">
+                    <span class="border border-white round-border p-2 text-white">${genre.name}</span>
                 </li>
         `)
         })

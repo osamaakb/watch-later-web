@@ -15,33 +15,39 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="style.css">
     <title>Watch later</title>
 </head>
 
 <body>
 
-    <!-- Nav Bar -->
-    <nav class="navbar navbar-light white justify-content-between z-depth-0 m-2">
-        <a class="navbar-brand" href="#"><strong>Watch Later</strong></a>
-        <form class="form-inline my-1">
-            <div class="md-form form-sm my-0">
-                <i class="fas fa-search prefix"></i>
-                <input class="form-control form-control-sm mr-sm-2 mb-0" type="text" placeholder="Search"
-                    aria-label="Search">
+    <div class="opacity">
+
+        <div id="wrapper" class="m-4 justify-content-start ">
+            <div class="play-wrapper">
+                <a href="#"><img src="../images/play.png" class="play-button" alt=""></a>
             </div>
-            <!-- <button class="btn btn-outline-white btn-sm my-0" type="submit">Search</button> -->
-        </form>
-    </nav>
-    <!-- Nav Bar -->
 
+            <div class="text-center mb-4">
+                <span class="border border-white round-border p-2 text-white m-3">106 mins</span>
+                <span class="border border-white round-border p-2 text-white m-3">7.1/10</span>
+            </div>
 
-    <div class="m-4 w-auto">
-        <div id="movieList" class="row">
+            <h1 id="title" class="text-white"></h1>
+            <h5 class="text-white-50 mb-4" id="tagline"></h5>
+            <h3 class="text-white">Overview</h3>
+            <span class="text-white" id="overview"></span>
+
+            <ul class="mt-4 list-group list-group-horizontal overflow-auto" id="genres">
+            </ul>
+
+            <ul class="mt-4 list-group list-group-horizontal overflow-auto" id="cast">
+                <img src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/taemN1znIWgkahgu80gG1DLv5gC.jpg" alt="">
+            </ul>
+
         </div>
-        <!--First row-->
 
     </div>
-
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -56,8 +62,8 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/js/mdb.min.js"></script>
 
 
-    <script src="networkRequests.js"></script>
-    <script src="./models/movie.js"></script>
+    <script src="../models/movieDetails.js"></script>
+    <script src="../networkRequests.js"></script>
     <script src="index.js"></script>
 
 

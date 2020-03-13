@@ -25,24 +25,25 @@
 
         <div id="wrapper" class="m-4 justify-content-start ">
             <div class="play-wrapper">
-                <a href="#"><img src="../images/play.png" class="play-button" alt=""></a>
+                <a id="playButton" href="#"><img src="../images/play.png" class="play-button" alt=""></a>
             </div>
 
             <div class="text-center mb-4">
-                <span class="border border-white round-border p-2 text-white m-3">106 mins</span>
-                <span class="border border-white round-border p-2 text-white m-3">7.1/10</span>
+                <span id="time" class="border border-white round-border p-2 text-white m-3"></span>
+                <span id="rate" class="border border-white round-border p-2 text-white m-3"></span>
             </div>
 
             <h1 id="title" class="text-white"></h1>
             <h5 class="text-white-50 mb-4" id="tagline"></h5>
-            <h3 class="text-white">Overview</h3>
+            <h2 class="text-white">Overview</h2>
             <span class="text-white" id="overview"></span>
 
             <ul class="mt-4 list-group list-group-horizontal overflow-auto" id="genres">
             </ul>
 
-            <ul class="mt-4 list-group list-group-horizontal overflow-auto" id="cast">
-                <img src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/taemN1znIWgkahgu80gG1DLv5gC.jpg" alt="">
+            <h3 class="font-weight-bold text-white mt-4 mb-4">Top Cast</h3>
+
+            <ul class="mt-4 list-group list-group-horizontal-md overflow-auto" id="castList">
             </ul>
 
         </div>
@@ -62,6 +63,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/js/mdb.min.js"></script>
 
 
+    <script src="../models/actor.js"></script>
     <script src="../models/movieDetails.js"></script>
     <script src="../networkRequests.js"></script>
     <script src="index.js"></script>

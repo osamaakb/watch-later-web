@@ -32,3 +32,26 @@ html {
 .round-border {
   border-radius: 20px;
 }
+
+.circle-border {
+  border-radius: 50%;
+}
+
+.actor img {
+  height: 180px;
+  width: 180px;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .actor img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    float: left;
+  }
+
+  .actor {
+    margin: 16px;
+  }
+}

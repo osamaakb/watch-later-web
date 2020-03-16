@@ -46,7 +46,7 @@ function run() {
 
     const searchButton = document.getElementById('searchButton')
     const searchField = document.getElementById('searchField')
-
+    // some comment
     searchButton.addEventListener('click', () => {
         progress.classList.remove('d-none')
         movieList.classList.add('d-none')

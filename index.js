@@ -33,8 +33,12 @@ class MovieView {
 
 function run() {
 
-    let progress = document.getElementById('progressBar')
+    let title = document.getElementById('title')
+    title.addEventListener('click', () => {
+        location.reload(true);
+    })
 
+    let progress = document.getElementById('progressBar')
 
     NetworkRequests.getMovies()
         .then(movies => {
@@ -44,8 +48,6 @@ function run() {
         })
 
     const searchField = document.getElementById('searchField')
-
-
     searchField.addEventListener('keydown', (e) => {
         if (e.keyCode == 13) {
             console.log(searchField.value);

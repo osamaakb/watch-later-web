@@ -43,21 +43,24 @@ function run() {
             MovieView.movieItem(movies)
         })
 
-
-    const searchButton = document.getElementById('searchButton')
     const searchField = document.getElementById('searchField')
-    // some comment
-    searchButton.addEventListener('click', () => {
-        progress.classList.remove('d-none')
-        movieList.classList.add('d-none')
-        NetworkRequests.getSearchMovie(searchField.value)
-            .then(movies => {
-                progress.classList.add('d-none')
-                movieList.classList.remove('d-none')
-                MovieView.renderMovie(movies)
-                MovieView.movieItem(movies)
-            })
+
+
+    searchField.addEventListener('keydown', (e) => {
+        if (e.keyCode == 13) {
+            console.log(searchField.value);
+            progress.classList.remove('d-none')
+            movieList.classList.add('d-none')
+            NetworkRequests.getSearchMovie(searchField.value)
+                .then(movies => {
+                    progress.classList.add('d-none')
+                    movieList.classList.remove('d-none')
+                    MovieView.renderMovie(movies)
+                    MovieView.movieItem(movies)
+                })
+        }
     })
+
 }
 
 document.addEventListener("DOMContentLoaded", run);

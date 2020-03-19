@@ -33,11 +33,8 @@ class MovieView {
 
 function run() {
 
-    let title = document.getElementById('title')
-    title.addEventListener('click', () => {
-        location.reload(true);
-    })
-
+    Auth.getUser()
+    handleNavBtns()
     let progress = document.getElementById('progressBar')
 
     NetworkRequests.getMovies()
@@ -63,6 +60,27 @@ function run() {
         }
     })
 
+}
+
+function handleNavBtns() {
+    let title = document.getElementById('title')
+    title.addEventListener('click', () => {
+        location.reload(true);
+    })
+
+    let signBtn = document.getElementById('signBtn')
+    signBtn.addEventListener('click', handleSignBtn)
+
+}
+
+async function handleSignBtn() {
+    let user = await Auth.getUser()
+
+    if (user != null) {
+        Auth.signOut();
+    } else {
+        Auth.directToFirebase()
+    }
 }
 
 document.addEventListener("DOMContentLoaded", run);

@@ -1,13 +1,10 @@
-
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/w370_and_h556_bestv2';
 const movieList = document.getElementById('movieList')
 let isSigned = false;
 let user1;
+
 class MovieView {
-
     static renderMovie(movies, favList) {
-        console.log(movies);
-
         movieList.innerHTML = '';
         movies.forEach(movie => {
             movieList.insertAdjacentHTML('beforeend', `
@@ -38,20 +35,23 @@ class MovieView {
 
     static handleFav(favList, movies) {
         let favBtns = document.getElementsByClassName('fav-btn')
-
-        for (let i = 0; i < favBtns.length; i++) {
-            favBtns[i].addEventListener('click', () => NetworkRequests.addFavorite(user1, movies[i]))
-        }
+        let isFav = false;
 
         for (let i = 0; i < movies.length; i++) {
             favList.forEach(favMovie => {
                 if (movies[i].id == favMovie.id) {
                     favBtns[i].src = './images/heartfull.png'
-
+                    favBtns[i].addEventListener('click',
+                        () => NetworkRequests.removeFavorite(user1, movies[i], favBtns[i]), { once: true })
+                    isFav = true;
                 }
             })
+            if (!isFav) {
+                favBtns[i].addEventListener('click',
+                    () => NetworkRequests.addFavorite(user1, movies[i], favBtns[i]), { once: true })
+                isFav = false
+            }
         }
-
     }
 }
 
@@ -87,8 +87,6 @@ async function run() {
 
     let navFavBtn = document.getElementById('favBtn')
     navFavBtn.addEventListener('click', () => { MovieView.renderMovie(favList, favList) })
-
-
 }
 
 async function getFavList() {

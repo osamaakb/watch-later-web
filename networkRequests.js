@@ -49,20 +49,31 @@ class NetworkRequests {
             .catch(err => console.log(err));
     }
 
-    static addFavorite(user, movie) {
-        console.log(movie);
 
+    // Firebase requests
+    static addFavorite(user, movie, btn) {
         db.collection(user.uid)
             .add({ ...movie })
-            .then(res => console.log(res)
+            .then(res => {
+                btn.src = './images/heartfull.png'
+                btn.addEventListener('click',
+                    () => NetworkRequests.removeFavorite(user1, movie, btn), { once: true })
+            }
             ).catch(err => console.log(err))
     }
 
-    static removeFavorite(user, movie) {
-        db.collection(user.uid)
-            .delete(movie)
-            .then(res => console.log(res)
-            ).catch(err => console.log(err))
+    static removeFavorite(user, movie, btn) {
+        let movieRef = db.collection(user.uid).where('id', '==', movie.id);
+        movieRef.get()
+            .then(snapshot => {
+                snapshot.forEach((doc) => {
+                    doc.ref.delete().then(() => {
+                        btn.src = './images/heart.png'
+                        btn.addEventListener('click',
+                            () => NetworkRequests.addFavorite(user1, movie, btn), { once: true })
+                    })
+                });
+            });
     }
 
     static getFavorite(user) {

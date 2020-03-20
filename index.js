@@ -57,7 +57,10 @@ class MovieView {
 
 async function run() {
 
+    console.log(Auth);
+
     let favList = await getFavList()
+
 
     handleNavBtns()
     let progress = document.getElementById('progressBar')

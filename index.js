@@ -57,8 +57,6 @@ class MovieView {
 
 async function run() {
 
-    console.log(Auth);
-
     let favList = await getFavList()
 
 

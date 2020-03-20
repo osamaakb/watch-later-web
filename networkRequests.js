@@ -48,4 +48,29 @@ class NetworkRequests {
             })
             .catch(err => console.log(err));
     }
+
+    static addFavorite(user, movie) {
+        console.log(movie);
+
+        db.collection(user.uid)
+            .add({ ...movie })
+            .then(res => console.log(res)
+            ).catch(err => console.log(err))
+    }
+
+    static removeFavorite(user, movie) {
+        db.collection(user.uid)
+            .delete(movie)
+            .then(res => console.log(res)
+            ).catch(err => console.log(err))
+    }
+
+    static getFavorite(user) {
+        return db.collection(user.uid).get()
+            .then(docs => {
+                return docs.docs.map(doc => new Movie(doc.data()))
+            });
+    }
+
+
 }

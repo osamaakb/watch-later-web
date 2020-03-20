@@ -47,6 +47,14 @@ html {
   white-space: nowrap;
 }
 
+.fav-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  height: 48px;
+  width: 48px;
+}
+
 @media only screen and (max-width: 600px) {
   .actor img {
     height: 100px;
@@ -57,5 +65,13 @@ html {
 
   .actor {
     margin: 16px;
+  }
+
+  .fav-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    height: 36px;
+    width: 36px;
   }
 }

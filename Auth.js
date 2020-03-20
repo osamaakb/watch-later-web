@@ -23,15 +23,16 @@ class Auth {
     static async directToFirebase() {
         const provider = new firebase.auth.GoogleAuthProvider();
         const result = await firebase.auth().signInWithPopup(provider);
+        window.location.reload()
         return result;
     }
 
     static signOut() {
         firebase.auth().signOut()
             .then(() => {
+                window.location.reload()
                 Auth.favBtn.classList.add('d-none')
             })
-        signOutModalInstance.open();
     }
 
 }

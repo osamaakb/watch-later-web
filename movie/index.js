@@ -19,7 +19,6 @@ class SingleMovieView {
         overview.innerText = movie.overview;
         title.innerText = movie.title
 
-
         movie.genres.forEach(genre => {
             genresList.insertAdjacentHTML('beforeend', `
                 <li class="mr-2 mt-2 mb-2 list-unstyled genres-item">
@@ -27,11 +26,28 @@ class SingleMovieView {
                 </li>
         `)
         })
+
+        let favList = JSON.parse(localStorage.getItem('favs'))
+        let favBtn = document.getElementById('favBtn')
+
+        let user = JSON.parse(
+            localStorage.getItem("firebase:authUser:AIzaSyBzRF4WCIC-7pk_YZlJtfyIDRj-W-yEk3M:[DEFAULT]"));
+
+        favList.forEach(favMovie => {
+            if (favMovie.id == movie.id) {
+                console.log(favMovie.title)
+                favBtn.src = '../images/heartfull.png'
+                favBtn.addEventListener('click',
+                    () => NetworkRequests.removeFavorite(user, { id: movie.id }, favBtn, '../images/heart.png'), { once: true })
+            }
+        })
+
+        favBtn.addEventListener('click',
+            () => NetworkRequests.addFavorite(user, { id: movie.id, title: movie.title, poster_path: movie.poster_path }, favBtn, '../images/heartfull.png'), { once: true })
+
     }
 
     static renderCast(cast) {
-        console.log(cast);
-
         let castList = document.getElementById('castList')
         cast.forEach(actor => {
             castList.insertAdjacentHTML('beforeend', `
@@ -69,6 +85,8 @@ function run() {
         .then(cast => {
             SingleMovieView.renderCast(cast)
         })
+
+
 
 
 }

@@ -96,6 +96,7 @@ async function getFavList() {
         isSigned = true;
         user1 = user;
         let favs = await NetworkRequests.getFavorite(user)
+        window.localStorage.setItem('favs', JSON.stringify(favs))
         return favs;
     }
     else {

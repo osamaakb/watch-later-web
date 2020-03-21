@@ -51,26 +51,32 @@ class NetworkRequests {
 
 
     // Firebase requests
-    static addFavorite(user, movie, btn, imgPath = './images/heartfull.png') {
+    static addFavorite(user, movie, btn, isDetailPage) {
+        // $('#myModal').modal('show')
         db.collection(user.uid)
             .add({ ...movie })
             .then(res => {
-                btn.src = imgPath
+                console.log('addd');
+                isDetailPage ? btn.src = '/images/heartfull.png' : btn.src = '../images/heartfull.png'
+                // $('#myModal').modal('hide')
                 btn.addEventListener('click',
-                    () => NetworkRequests.removeFavorite(user, movie, btn, imgPath), { once: true })
+                    () => NetworkRequests.removeFavorite(user, movie, btn, isDetailPage), { once: true })
             }
             ).catch(err => console.log(err))
     }
 
-    static removeFavorite(user, movie, btn, imgPath = './images/heart.png') {
+    static removeFavorite(user, movie, btn, isDetailPage) {
+        // $('#myModal').modal('show')
         let movieRef = db.collection(user.uid).where('id', '==', movie.id);
         movieRef.get()
             .then(snapshot => {
                 snapshot.forEach((doc) => {
-                    doc.ref.delete().then(() => {
-                        btn.src = imgPath
+                    doc.ref.delete().then(res => {
+                        console.log('remoove');
+                        isDetailPage ? btn.src = '/images/heart.png' : btn.src = '../images/heart.png'
+                        // $('#myModal').modal('hide')
                         btn.addEventListener('click',
-                            () => NetworkRequests.addFavorite(user, movie, btn, imgPath), { once: true })
+                            () => NetworkRequests.addFavorite(user, movie, btn, isDetailPage), { once: true })
                     })
                 });
             });

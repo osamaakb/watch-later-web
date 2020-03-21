@@ -38,12 +38,12 @@ class SingleMovieView {
                 console.log(favMovie.title)
                 favBtn.src = '../images/heartfull.png'
                 favBtn.addEventListener('click',
-                    () => NetworkRequests.removeFavorite(user, { id: movie.id }, favBtn, '../images/heart.png'), { once: true })
+                    () => NetworkRequests.removeFavorite(user, { id: movie.id }, favBtn, true), { once: true })
             }
         })
 
         favBtn.addEventListener('click',
-            () => NetworkRequests.addFavorite(user, { id: movie.id, title: movie.title, poster_path: movie.poster_path }, favBtn, '../images/heartfull.png'), { once: true })
+            () => NetworkRequests.addFavorite(user, { id: movie.id, title: movie.title, poster_path: movie.poster_path }, favBtn, true), { once: true })
 
     }
 

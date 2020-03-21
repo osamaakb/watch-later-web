@@ -9,7 +9,7 @@ class MovieView {
         movies.forEach(movie => {
             movieList.insertAdjacentHTML('beforeend', `
             <div class="col-lg-2 col-md-3 col-sm-4 col-6 animated fadeIn mb-4">       
-                <a href="#">                 
+                <a>                 
                     <div class="view overlay zoom z-depth-2 rounded-lg poster">
                     <img src=${IMAGE_PATH + movie.poster_path} class="img-fluid poster movie-item">
                     <img src="./images/heart.png" class="position-absolute img-fluid fav-btn">
@@ -39,18 +39,23 @@ class MovieView {
 
         for (let i = 0; i < movies.length; i++) {
             favList.forEach(favMovie => {
-                if (movies[i].id == favMovie.id) {
-                    favBtns[i].src = './images/heartfull.png'
-                    favBtns[i].addEventListener('click',
-                        () => NetworkRequests.removeFavorite(user1, movies[i], favBtns[i]), { once: true })
-                    isFav = true;
+                if (!isFav) {
+                    if (movies[i].id == favMovie.id) {
+                        favBtns[i].src = './images/heartfull.png'
+                        favBtns[i].addEventListener('click',
+                            () => NetworkRequests.removeFavorite(user1, movies[i], favBtns[i], false), { once: true })
+                        isFav = true;
+                    } else {
+                        isFav = false;
+                    }
                 }
             })
+            console.log(isFav);
             if (!isFav) {
                 favBtns[i].addEventListener('click',
-                    () => NetworkRequests.addFavorite(user1, movies[i], favBtns[i]), { once: true })
-                isFav = false
+                    () => NetworkRequests.addFavorite(user1, movies[i], favBtns[i], false), { once: true })
             }
+            isFav = false
         }
     }
 }
@@ -58,7 +63,6 @@ class MovieView {
 async function run() {
 
     let favList = await getFavList()
-
 
     handleNavBtns()
     let progress = document.getElementById('progressBar')
